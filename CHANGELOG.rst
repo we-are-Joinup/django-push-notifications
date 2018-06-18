@@ -1,3 +1,7 @@
+v1.6.1 (2018-06-18)
+===================
+* Enable registration_id as unique for GCM devices (only for PostgreSQL engines)
+
 v1.6.0 (2018-01-31)
 ===================
 * BACKWARDS-INCOMPATIBLE: Drop support for Django < 1.11
