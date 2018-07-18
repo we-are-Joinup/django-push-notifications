@@ -1,3 +1,9 @@
+v1.6.2 (2018-07-18)
+===================
+* registration_id as unique configurable by a new setting UNIQUE_REG_ID
+* Solve problem when send bulk message but any known error happen and don't send any
+* Disable device if any known error happen when try to send push
+
 v1.6.1 (2018-06-18)
 ===================
 * Enable registration_id as unique for GCM devices (only for PostgreSQL engines)
