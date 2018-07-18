@@ -91,7 +91,7 @@ class GCMDevice(Device):
 		verbose_name=_("Device ID"), blank=True, null=True, db_index=True,
 		help_text=_("ANDROID_ID / TelephonyManager.getDeviceId() (always as hex)")
 	)
-	registration_id = models.TextField(verbose_name=_("Registration ID"), unique=True)
+	registration_id = models.TextField(verbose_name=_("Registration ID"), unique=SETTINGS["UNIQUE_REG_ID"])
 	cloud_message_type = models.CharField(
 		verbose_name=_("Cloud Message Type"), max_length=3,
 		choices=CLOUD_MESSAGE_TYPES, default="GCM",
@@ -149,7 +149,7 @@ class APNSDevice(Device):
 		help_text="UDID / UIDevice.identifierForVendor()"
 	)
 	registration_id = models.CharField(
-		verbose_name=_("Registration ID"), max_length=200, unique=True
+		verbose_name=_("Registration ID"), max_length=200, unique=SETTINGS["UNIQUE_REG_ID"]
 	)
 
 	objects = APNSDeviceManager()
@@ -198,7 +198,7 @@ class WNSDevice(Device):
 		verbose_name=_("Device ID"), blank=True, null=True, db_index=True,
 		help_text=_("GUID()")
 	)
-	registration_id = models.TextField(verbose_name=_("Notification URI"))
+	registration_id = models.TextField(verbose_name=_("Notification URI"), unique=SETTINGS["UNIQUE_REG_ID"])
 
 	objects = WNSDeviceManager()
 
@@ -220,15 +220,15 @@ class WebPushDeviceManager(models.Manager):
 
 class WebPushDeviceQuerySet(models.query.QuerySet):
 	def send_message(self, message, **kwargs):
+		from .webpush import webpush_send_bulk_message
 		devices = self.filter(active=True).order_by("application_id").distinct()
-		res = []
-		for device in devices:
-			res.append(device.send_message(message))
-		return res
+		ret = []
+		ret.append(webpush_send_bulk_message(devices, message, **kwargs))
+		return ret
 
 
 class WebPushDevice(Device):
-	registration_id = models.TextField(verbose_name=_("Registration ID"))
+	registration_id = models.TextField(verbose_name=_("Registration ID"), unique=SETTINGS["UNIQUE_REG_ID"])
 	p256dh = models.CharField(
 		verbose_name=_("User public encryption key"),
 		max_length=88)
@@ -249,9 +249,7 @@ class WebPushDevice(Device):
 	def send_message(self, message, **kwargs):
 		from .webpush import webpush_send_message
 
-		return webpush_send_message(
-			uri=self.registration_id, message=message, browser=self.browser,
-			auth=self.auth, p256dh=self.p256dh, application_id=self.application_id, **kwargs)
+		return webpush_send_message(self, message, **kwargs)
 
 	@property
 	def device_id(self):
