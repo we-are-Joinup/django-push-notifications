@@ -1,4 +1,4 @@
-v1.6.3 (2018-??-??)
+v1.6.3 (2018-09-07)
 ===================
 * Disable device due to new known error
 
