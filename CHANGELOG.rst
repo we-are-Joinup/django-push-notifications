@@ -1,3 +1,7 @@
+v1.6.3 (2018-??-??)
+===================
+* Disable device due to new known error
+
 v1.6.2 (2018-07-18)
 ===================
 * registration_id as unique configurable by a new setting UNIQUE_REG_ID
