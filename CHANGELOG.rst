@@ -1,3 +1,7 @@
+v1.6.4 (2020-03-26)
+===================
+* Fix python 3 compatibility
+
 v1.6.3 (2018-09-07)
 ===================
 * Disable device due to new known error

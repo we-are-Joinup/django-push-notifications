@@ -42,7 +42,7 @@ class DeviceAdmin(admin.ModelAdmin):
 			except APNSServerError as e:
 				errors.append(e.status)
 			except WebPushError as e:
-				errors.append(e.message)
+				errors.append(str(e))
 
 			if bulk:
 				break
