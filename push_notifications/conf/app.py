@@ -191,9 +191,10 @@ class AppConfig(BaseConfig):
 			application_id, application_config, WP_REQUIRED_SETTINGS
 		)
 		application_config.setdefault("POST_URL", {
-			"CHROME": 'https://fcm.googleapis.com/fcm/send',
-			"OPERA": 'https://fcm.googleapis.com/fcm/send',
-			"FIREFOX": 'https://updates.push.services.mozilla.com/wpush/v2'
+			"CHROME": "https://fcm.googleapis.com/fcm/send",
+			"OPERA": "https://fcm.googleapis.com/fcm/send",
+			"EDGE": "https://wns2-par02p.notify.windows.com/w",
+			"FIREFOX": "https://updates.push.services.mozilla.com/wpush/v2",
 		})
 
 
