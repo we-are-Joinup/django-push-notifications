@@ -1,3 +1,6 @@
+from datetime import datetime
+from urllib.parse import urlparse
+
 from django.core.exceptions import ImproperlyConfigured
 from django.utils.six import string_types
 from .base import BaseConfig
@@ -134,3 +137,14 @@ class LegacyConfig(BaseConfig):
 	def get_wp_claims(self, application_id=None):
 		msg = "Setup PUSH_NOTIFICATIONS_SETTINGS properly to send messages"
 		return self._get_application_settings(application_id, "WP_CLAIMS", msg)
+
+	def get_wp_claims(self, application_id, browser):
+		msg = "Setup PUSH_NOTIFICATIONS_SETTINGS properly to send messages"
+		claims = self._get_application_settings(application_id, "WP", "CLAIMS", msg).copy()
+		now = datetime.now()
+		claims['exp'] = int(datetime.timestamp(now) + 24 * 60 * 60)
+		post_url_parsed = urlparse(self.get_wp_post_url(application_id, browser))
+		claims['aud'] = f'{post_url_parsed.scheme}://{post_url_parsed.hostname}'
+		if post_url_parsed.port:
+			claims['aud'] += f':{post_url_parsed.port}'
+		return claims

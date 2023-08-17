@@ -1,3 +1,10 @@
+v1.6.5 (2023-08-18)
+===================
+* Does not work push notifications in Chrome & Firefox:
+
+  * Chrome exp now is required
+  * Firefox exp, and aud now are required
+
 v1.6.4 (2020-03-26)
 ===================
 * Fix python 3 compatibility
