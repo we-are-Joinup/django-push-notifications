@@ -27,13 +27,23 @@ def webpush_send_bulk_message(devices, message, **kwargs):
 		"success": 0,
 		"failure": 0,
 		"results": []}
+	exception_message = ''
 	for device in devices:
-		webpush_send_message(device, message, results=results, **kwargs)
+		try:
+			webpush_send_message(device, message, results=results, **kwargs)
+		except WebPushError as e:
+			if exception_message != '':
+				exception_message += '\n\n'
+			exception_message += f'{e} device pk: {device.pk}'
+
 	ids_to_remove = []
 	for result in results["results"]:
 		if "error" in result:
 			ids_to_remove.append(result["original_registration_id"])
-		WebPushDevice.objects.filter(registration_id__in=ids_to_remove).update(active=False)
+	WebPushDevice.objects.filter(registration_id__in=ids_to_remove).update(active=False)
+
+	if exception_message:
+		raise WebPushError(exception_message)
 
 	return results
 
