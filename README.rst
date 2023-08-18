@@ -181,15 +181,20 @@ For WNS, you need both the ``WNS_PACKAGE_SECURITY_KEY`` and the ``WNS_SECRET_KEY
 			// Chrome: 'Google Chrome'
 			// Edge: 'Microsoft Edge'
 			// Opera: 'Opera'
-			const browser = uaData.brands[0];
-			const brandname = browser.brand;
-			// If there is a space within brandname, we only care about the right part
-			const browsername = brandname.substr(brandname.indexOf(' ')+1);
-			const browserversion = browser.version;
-
-			return {
-			    name: browsername,
-			    version: browserversion
+			const browser = uaData.brands.find((browserBrand)=>{
+				if (['Google Chrome', 'Microsoft Edge', 'Opera'].includes(browserBrand.brand)) {
+					return browserBrand;
+				}
+			});
+			if (browser) {
+				const brandname = browser.brand;
+				// If there is a space within brandname, we only care about the right part
+				const browsername = brandname.substr(brandname.indexOf(' ')+1);
+				const browserversion = browser.version;
+				return {
+					name: browsername,
+					version: browserversion
+				}
 			}
 		}
 		// Otherwise fallback to the old method via userAgent
