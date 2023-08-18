@@ -1,3 +1,12 @@
+v1.6.5 (2023-08-18)
+===================
+
+* Fix errors:
+  * https://github.com/jazzband/django-push-notifications/commit/502b04414b08a37dd4e20e376df191fc5e9d5af8
+  * https://github.com/jazzband/django-push-notifications/commit/6f7b80d0d59f2f49c1290528b67220baa766d967
+* Upgrade pywebpush. Currently pywebpush add exp param [b4e2265f9f442c2dd51471c488a4db9f1d93f6fc]
+* Fix error when the backend sends a push to several devices and we get an error in one of these devices. [1cdaa0d42a9d4b9a6aac331e0b1fd293530a77f2]
+
 v1.6.4 (2020-03-26)
 ===================
 * Fix python 3 compatibility
