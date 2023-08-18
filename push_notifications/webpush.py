@@ -51,7 +51,7 @@ def webpush_send_message(device, message, results=None, **kwargs):
 			subscription_info=get_subscription_info(device.application_id, device.registration_id, device.browser, device.auth, device.p256dh),
 			data=message,
 			vapid_private_key=get_manager().get_wp_private_key(device.application_id),
-			vapid_claims=get_manager().get_wp_claims(device.application_id))
+			vapid_claims=get_manager().get_wp_claims(device.application_id).copy())
 		if response.ok:
 			results["success"] += 1
 			results["results"].append({'original_registration_id': device.registration_id})
