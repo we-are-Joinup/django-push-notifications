@@ -32,7 +32,7 @@ You can install the library directly from pypi using pip:
 
 .. code-block:: shell
 
-	$ pip install django-push-notifications-rubgomez93
+	$ pip install django-push-notifications-joinup
 
 
 Edit your settings.py file:
