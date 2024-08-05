@@ -2,6 +2,10 @@ from django.core.exceptions import ImproperlyConfigured
 
 
 class BaseConfig(object):
+
+	def get_firebase_app(self, application_id=None):
+		raise NotImplementedError
+
 	def get_apns_certificate(self, application_id=None):
 		raise NotImplementedError
 
@@ -11,25 +15,13 @@ class BaseConfig(object):
 	def get_apns_use_alternative_port(self, application_id=None):
 		raise NotImplementedError
 
-	def get_fcm_api_key(self, application_id=None):
-		raise NotImplementedError
-
-	def get_gcm_api_key(self, application_id=None):
-		raise NotImplementedError
-
 	def get_wns_package_security_id(self, application_id=None):
 		raise NotImplementedError
 
 	def get_wns_secret_key(self, application_id=None):
 		raise NotImplementedError
 
-	def get_post_url(self, cloud_type, application_id=None):
-		raise NotImplementedError
-
-	def get_error_timeout(self, cloud_type, application_id=None):
-		raise NotImplementedError
-
-	def get_max_recipients(self, cloud_type, application_id=None):
+	def get_max_recipients(self, application_id=None):
 		raise NotImplementedError
 
 	def get_applications(self):
