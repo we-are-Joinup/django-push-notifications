@@ -1,3 +1,10 @@
+v1.6.6 (2024-08-07)
+===================
+
+* Use new FCM v1 API by using firebase_admin SDK:
+
+  * https://github.com/jazzband/django-push-notifications/commit/c23e49da0e9953363a57a642ab74af773b6c0754
+
 v1.6.5.1 (2023-08-18)
 ===================
 
