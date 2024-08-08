@@ -1,3 +1,10 @@
+v1.6.6.1 (2024-08-08)
+===================
+
+* Use new FCM v1 API by using firebase_admin SDK:
+
+  * Enable use_fcm_notifications another time
+
 v1.6.6 (2024-08-07)
 ===================
 
