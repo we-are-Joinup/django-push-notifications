@@ -43,21 +43,33 @@ def dict_to_fcm_message(data: dict, dry_run=False, **kwargs) -> messaging.Messag
 
 	android_notification = None
 
-	notification_payload = {}
-	if "message" in data:
-		notification_payload["body"] = data.pop("message", None)
-	for key in FCM_NOTIFICATIONS_PAYLOAD_KEYS:
-		value_from_extra = data.pop(key, None)
-		if value_from_extra:
-			notification_payload[key] = value_from_extra
-		value_from_kwargs = kwargs.pop(key, None)
-		if value_from_kwargs:
-			notification_payload[key] = value_from_kwargs
-	if notification_payload:
-		# channel id is the one that is different
-		notification_payload["channel_id"] = notification_payload.pop("android_channel_id", None)
-		notification_payload["notification_count"] = notification_payload.pop("badge", None)
-		android_notification = messaging.AndroidNotification(**notification_payload)
+	content_available = kwargs.pop('content_available', False)
+
+	if content_available:
+		data['content-available'] = '1'
+		android_channel_id = data.pop("android_channel_id", None)
+		if isinstance(android_channel_id, str):
+			data["channel_id"] = android_channel_id
+	else:
+		notification_payload = {}
+		if "message" in data:
+			notification_payload["body"] = data.get("message", None)
+
+		for key in FCM_NOTIFICATIONS_PAYLOAD_KEYS:
+			value_from_extra = data.get(key, None)
+
+			if value_from_extra:
+				notification_payload[key] = value_from_extra
+			value_from_kwargs = kwargs.pop(key, None)
+			if value_from_kwargs:
+				notification_payload[key] = value_from_kwargs
+
+		if notification_payload:
+			# channel id is the one that is different
+			notification_payload["channel_id"] = notification_payload.pop("android_channel_id", None)
+			notification_payload["notification_count"] = notification_payload.pop("badge", None)
+			android_notification = messaging.AndroidNotification(**notification_payload)
+
 
 	android_config = messaging.AndroidConfig(
 		collapse_key=data.pop("collapse_key", None) or kwargs.get("collapse_key", None),
