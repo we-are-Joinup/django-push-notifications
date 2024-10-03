@@ -1,5 +1,10 @@
+v1.6.6.2 (2024-10-03)
+=====================
+
+* Fix error: "Operation is not implemented, or supported, or enabled" (original commit: https://github.com/jazzband/django-push-notifications/commit/0f7918136b5e6a9aec83d6513aad5b0f12143a9f#diff-fa602a8a75dc9dcc92261bac5f533c2a85e34fcceaff63b3a3a81d9acde2fc52R38)
+
 v1.6.6.1 (2024-08-08)
-===================
+=====================
 
 * Use new FCM v1 API by using firebase_admin SDK:
 
