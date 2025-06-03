@@ -220,6 +220,7 @@ class AppConfig(BaseConfig):
 			"FIREFOX": "https://updates.push.services.mozilla.com/wpush/v2",
 		})
 		application_config.setdefault("TTL", 300)
+		application_config.setdefault("ERROR_TIMEOUT", 1)
 
 	def _validate_allowed_settings(self, application_id, application_config, allowed_settings):
 		"""Confirm only allowed settings are present."""
@@ -354,6 +355,9 @@ class AppConfig(BaseConfig):
 
 	def get_wp_claims(self, application_id=None):
 		return self._get_application_settings(application_id, "WP", "CLAIMS")
+
+	def get_wp_error_timeout(self, application_id=None):
+		return self._get_application_settings(application_id, "WP", "ERROR_TIMEOUT")
 
 	def get_wp_ttl(self, application_id=None):
 		return self._get_application_settings(application_id, "WP", "TTL")
