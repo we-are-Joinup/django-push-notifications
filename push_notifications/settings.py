@@ -3,7 +3,6 @@ from django.conf import settings
 
 PUSH_NOTIFICATIONS_SETTINGS = getattr(settings, "PUSH_NOTIFICATIONS_SETTINGS", {})
 
-# APP Configuration
 PUSH_NOTIFICATIONS_SETTINGS.setdefault(
 	"CONFIG", "push_notifications.conf.LegacyConfig"
 )
