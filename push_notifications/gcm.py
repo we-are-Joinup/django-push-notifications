@@ -10,6 +10,7 @@ from typing import List, Union
 
 from firebase_admin import messaging
 from firebase_admin.exceptions import FirebaseError, InvalidArgumentError
+
 from .conf import get_manager
 
 
@@ -187,5 +188,6 @@ def send_message(
 		return messaging.BatchResponse(ret)
 	else:
 		return messaging.BatchResponse([])
+
 
 send_bulk_message = send_message
