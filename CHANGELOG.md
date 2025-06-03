@@ -9,13 +9,61 @@
 * BUGFIX: Fix error when APN bulk messages sent with localized keys and badge function
 * BUGFIX: Fix `Push failed: 403 fobidden` error when sending message to Chrome WebPushDevice
 
+## [JOINUP] 1.6.6.2 (2024-10-03)
+================================
+
+* Fix error: "Operation is not implemented, or supported, or enabled" (original commit: https://github.com/jazzband/django-push-notifications/commit/0f7918136b5e6a9aec83d6513aad5b0f12143a9f#diff-fa602a8a75dc9dcc92261bac5f533c2a85e34fcceaff63b3a3a81d9acde2fc52R38)
+
+## [JOINUP] 1.6.6.1 (2024-08-08)
+=================================
+
+* Use new FCM v1 API by using firebase_admin SDK:
+
+  * Enable use_fcm_notifications another time
+
+## [JOINUP] 1.6.6 (2024-08-07)
+===============================
+
+* Use new FCM v1 API by using firebase_admin SDK:
+
+  * https://github.com/jazzband/django-push-notifications/commit/c23e49da0e9953363a57a642ab74af773b6c0754
+
+## [JOINUP] 1.6.5.1 (2023-08-18)
+================================
+
+* Fix errors:
+  * https://github.com/jazzband/django-push-notifications/commit/502b04414b08a37dd4e20e376df191fc5e9d5af8
+  * https://github.com/jazzband/django-push-notifications/commit/6f7b80d0d59f2f49c1290528b67220baa766d967
+* Upgrade pywebpush. Currently pywebpush add exp param [b4e2265f9f442c2dd51471c488a4db9f1d93f6fc]
+* Fix error when the backend sends a push to several devices and we get an error in one of these devices. [1cdaa0d42a9d4b9a6aac331e0b1fd293530a77f2]
+* Edge support: https://github.com/jazzband/django-push-notifications/commit/08af89d96f82d17318de482ecf3b3eaa34192a26
+
+## [JOINUP] 1.6.4 (2020-03-26)
+======================
+* Fix python 3 compatibility
+
+## [JOINUP] 1.6.3 (2018-09-07)
+==============================
+* Disable device due to new known error
+
+## [JOINUP] 1.6.2 (2018-07-18)
+==============================
+* registration_id as unique configurable by a new setting UNIQUE_REG_ID
+* Solve problem when send bulk message but any known error happen and don't send any
+* Disable device if any known error happen when try to send push
 
 ## 1.6.1 (2019-08-16)
 * Pin dependency to apns to <0.6.0 to fix a Python version
   incompatibility.
 * Add configuration for semi-automatic releases via Jazzband.
 
+## [JOINUP] 1.6.1 (2018-06-18)
+==============================
+* Enable registration_id as unique for GCM devices (only for PostgreSQL engines)
+
+
 ## 1.6.0 (2018-01-31)
+====================
 * BACKWARDS-INCOMPATIBLE: Drop support for Django < 1.11
 * DJANGO: Support Django 2.0
 * NEW FEATURE: Add support for WebPush
