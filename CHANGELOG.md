@@ -1,3 +1,15 @@
+## [JOINUP] 3.2.1.1 (2025-07-21)
+
+* https://github.com/jazzband/django-push-notifications/pull/770
+* https://github.com/jazzband/django-push-notifications/pull/771
+* https://github.com/jazzband/django-push-notifications/pull/772
+* https://github.com/jazzband/django-push-notifications/pull/773
+* https://github.com/jazzband/django-push-notifications/pull/774
+* https://github.com/jazzband/django-push-notifications/pull/775
+* https://github.com/jazzband/django-push-notifications/pull/776
+* https://github.com/jazzband/django-push-notifications/pull/777
+
+
 ## 2.0.0 (unreleased)
 * BACKWARDS-INCOMPATIBLE: Drop support for Django Rest Framework < 3.7
 * BACKWARDS-INCOMPATIBLE: NotificationError is now moved from `__init__.py` to `exceptions.py`
